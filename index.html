@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Poller+One&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <title>Hello, world!</title>
+    <style>
+      .black{
+        background-color: #000000;
+        color: #ffb300;
+        font-family: 'Poller One', cursive;
+      }
+      h1{
+        text-transform: uppercase;
+        text-align: center;
+      }
+      .form-signin {
+        width: 100%;
+        max-width: 430px;
+        padding: 15px;
+        margin: auto;
+        padding-top: 5%;
+    }
+    .white{
+      color: #FFF;
+    }
+    </style>
+    <script>
+      function getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min)) + min;
+      }
+      function pasarVariables(pagina, nombres) {
+        pagina +="?";
+        nomVec = nombres.split(",");
+        for (i=0; i<nomVec.length; i++)
+          pagina += nomVec[i] + "=" + escape(eval(nomVec[i]))+"&";
+        pagina = pagina.substring(0,pagina.length-1);
+        location.href=pagina;
+      }
+      $(document).ready(function(){
+        const nombre = prompt("Dime tu nombre");
+        var mensajeYoda;
+        var laclave;
+        if(nombre){
+          mensajeYoda = "Mira la consola " + nombre + ", y siente la fuerza!";
+          $("#mensaje").text(mensajeYoda);
+          laclave = getRandomInt(10, 100);
+          console.log("La clave es: " + laclave);
+        } else {
+          $("#page").empty();
+          $("#page").append("<br><br><br>");
+          $("#page").append("<h1>Ingresa tu nombre y conoceras <br> la fuerza del código</h1>");
+          $("#page").append("<h3 class='text-center white'>Presiona F5 otra vez</h3>");
+        }
+        $( "#send" ).click(function() {
+          var miclave = $('#clave').val();
+          console.log("Tu clave ingresada es "+clave);
+          if(miclave == laclave){
+            localStorage.setItem("alumno",nombre);
+            window.location.href = "welcome.html";
+          }
+        });
+      });
+
+    </script>
+  </head>
+  <body id="page" class="black">
+    <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-signin">
+              <h1 id="mensaje">Lee la fuente Luke!</h1>
+              <img class="img-fluid" src="images/yoda.png">
+              <input type="text" id="clave" class="form-control" placeholder="Escribe la clave secreta de Joda" required="" autofocus="">
+              <br>
+              <button id="send" class="btn btn-lg btn-primary btn-block" >Enviar clave</button>
+            </div>
+            
+          </div>
+        </div>
+    </div>
+    
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  </body>
+</html>
